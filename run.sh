@@ -1,1 +1,1 @@
-python ./src/Auto_DailyNews.py --wx-secret $1
+python ./src/DailyNews.py --wx-secret $1

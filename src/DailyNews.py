@@ -37,7 +37,3 @@ def get_message_content() -> str:
     content_text = "\n".join(content_text_list)
     return content_text
 
-
-if __name__ == '__main__':
-    msg = get_message_content()
-    print(msg)

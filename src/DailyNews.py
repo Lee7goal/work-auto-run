@@ -82,7 +82,11 @@ def get_message_content() -> str:
     }
 
     url = "https://www.163.com/dy/media/T1603594732083.html"
-    response = requests.get(url, headers=headers).text
+    proxies = {
+        "http": "http://221.5.80.66:3128",
+        "https": "http://221.5.80.66:3128",
+    }
+    response = requests.get(url, headers=headers, proxies=proxies).text
     first_news_xpath = '//div[@class="tab_content"]/ul/li/a/@href'
 
     html = etree.HTML(response)
@@ -93,7 +97,7 @@ def get_message_content() -> str:
 
     news_text_xpath = '//div[@class="post_body"]/p[2]/text()'
     content_text_list = html.xpath(news_text_xpath)
-#     content_text_list[0] = '每日早报, 精选15条热点新闻, 只花一分钟, 知晓天下事!'
+    content_text_list[0] = '每日早报, 精选15条热点新闻, 只花一分钟, 知晓天下事!'
     content_text = "\n".join(content_text_list)
     return content_text
 

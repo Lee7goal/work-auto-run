@@ -100,7 +100,7 @@ def get_message_content() -> str:
 #     content_text_list = html.xpath(news_text_xpath)
 #     content_text_list[0] = '每日早报, 精选15条热点新闻, 只花一分钟, 知晓天下事!'
 #     content_text = "\n".join(content_text_list)
-    content_text = content[:5000]
+    content_text = content[:2000]
     return content_text
 
 

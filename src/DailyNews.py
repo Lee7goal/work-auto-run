@@ -82,17 +82,17 @@ def get_message_content() -> str:
     }
 
     url = "https://www.163.com/dy/media/T1603594732083.html"
-    proxies = {
-        "http": "http://221.5.80.66:3128",
-        "https": "http://221.5.80.66:3128",
-    }
-    response = requests.get(url, headers=headers, proxies=proxies).text
+
+    response = requests.get(url, headers=headers).text
     first_news_xpath = '//div[@class="tab_content"]/ul/li/a/@href'
 
     html = etree.HTML(response)
     content_url = html.xpath(first_news_xpath)[0]
-
-    content = requests.get(content_url, headers=headers).text
+    proxies = {
+        "http": "http://221.5.80.66:3128",
+        "https": "http://221.5.80.66:3128",
+    }
+    content = requests.get(content_url, headers=headers, proxies=proxies).text
     html = etree.HTML(content)
 
     news_text_xpath = '//div[@class="post_body"]/p[2]/text()'

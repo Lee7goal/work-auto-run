@@ -94,13 +94,12 @@ def get_message_content() -> str:
 #     }
 #     content = requests.get(content_url, headers=headers, proxies=proxies).text
     content = requests.get(content_url, headers=headers).text
-#     html = etree.HTML(content)
+    html = etree.HTML(content)
 
-#     news_text_xpath = '//div[@class="post_body"]/p[2]/text()'
-#     content_text_list = html.xpath(news_text_xpath)
-#     content_text_list[0] = '每日早报, 精选15条热点新闻, 只花一分钟, 知晓天下事!'
-#     content_text = "\n".join(content_text_list)
-    content_text = content[:2000]
+    news_text_xpath = '//div[@class="post_body"]/p[2]/text()'
+    content_text_list = html.xpath(news_text_xpath)
+    content_text_list[0] = '每日早报, 精选15条热点新闻, 只花一分钟, 知晓天下事!'
+    content_text = "\n".join(content_text_list)
     return content_text
 
 

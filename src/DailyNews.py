@@ -1,12 +1,12 @@
-import requests
 from lxml import etree
 import base64
 import hashlib
-
+from ProxyTool import ProxyTools
 import requests
 
 import argparse
 
+p = ProxyTools()
 parser = argparse.ArgumentParser(description='manual to this script')
 parser.add_argument("--wx-secret", type=str, default="0")
 
@@ -88,12 +88,9 @@ def get_message_content() -> str:
 
     html = etree.HTML(response)
     content_url = html.xpath(first_news_xpath)[0]
-#     proxies = {
-#         "http": "http://221.5.80.66:3128",
-#         "https": "http://221.5.80.66:3128",
-#     }
-#     content = requests.get(content_url, headers=headers, proxies=proxies).text
-    content = requests.get(content_url, headers=headers).text
+    proxies = p.get()
+    content = requests.get(content_url, headers=headers, proxies=proxies).text
+#     content = requests.get(content_url, headers=headers).text
     html = etree.HTML(content)
 
     news_text_xpath = '//div[@class="post_body"]/p[2]/text()'

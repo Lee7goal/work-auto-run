@@ -88,7 +88,7 @@ def get_message_content() -> str:
 
     html = etree.HTML(response)
     content_url = html.xpath(first_news_xpath)[0]
-    proxies = p.get()
+    proxies = p.run()
     content = requests.get(content_url, headers=headers, proxies=proxies).text
 #     content = requests.get(content_url, headers=headers).text
     html = etree.HTML(content)

@@ -11,10 +11,13 @@ class ProxyTools:
 
     def check(self, proxies):
         url = 'https://www.163.com'
-        resp = self.session.get(url, proxies=proxies, timeout=20)
-        if resp.status_code == 200:
-            return True
-        else:
+        try:
+            resp = self.session.get(url, proxies=proxies, timeout=20)
+            if resp.status_code == 200:
+                return True
+            else:
+                return False
+        except:
             return False
 
     def get(self):
